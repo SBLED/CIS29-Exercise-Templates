@@ -1,6 +1,7 @@
 /*Spencer Bledsoe
 * CIS-29 (Adv C++) w/ Professor Grant Larkin
-
+Pre: 
+Post:
 Purpose: Modify from class to template to be used with both built-in (int, float, double, etc.) and user defined classes (user created classes/objects)
 Reference: https://www.programiz.com/cpp-programming/class-templates
 */
@@ -10,21 +11,23 @@ Reference: https://www.programiz.com/cpp-programming/class-templates
 
 using namespace std;
 
+template <class T>
+
 class Matrix
 {
 public:
-    vector<vector<double>> data;
+    vector<vector<T>> data; //replaced "double" with "T"
     size_t rows;
     size_t cols;
 
     // Constructor to create an empty matrix with given dimensions
     Matrix(size_t rows, size_t cols) : rows(rows), cols(cols)
     {
-        data.resize(rows, vector<double>(cols, 0.0));
+        data.resize(rows, vector<T>(cols, 0.0)); // replaced "double" with "T"
     }
 
     // Constructor to create a matrix from a 2D vector
-    Matrix(const vector<vector<double>>& input)
+    Matrix(const vector<vector<T>>& input) // replaced "double" with "T"
     {
         if (input.empty() || input[0].empty())
         {
@@ -37,7 +40,7 @@ public:
     }
 
     // Insert an element
-    void insert(double value, int row, int col)
+    void insert(T value, int row, int col) // replaced "double" with "T"
     {
         data[row][col] = value;
     }
@@ -55,7 +58,7 @@ public:
     }
 
     // Access an element in the matrix
-    double& operator()(size_t row, size_t col)
+    T& operator()(size_t row, size_t col) // replaced "double" with "T"
     {
         return data[row][col];
     }
@@ -137,7 +140,7 @@ public:
 
 void main()
 {
-    Matrix data1(3, 5);
+    Matrix<int> data1(3, 5);
     for (int r = 0; r < data1.getRows(); r++)
     {
         for (int c = 0; c < data1.getCols(); c++)
